@@ -1,0 +1,50 @@
+<h1>DIAMONDS LIST :</h1>
+
+
+start : <input type="date"  placeholder="start date "name="name" [(ngModel)]="startDate">
+End : <input type="date"  placeholder="end date "name="name" [(ngModel)]="endDate">  
+
+<button (click)="onSubmit()">Search between the dates to get avg and min</button>
+<br/><br/>
+<label for="catgoery">Currency</label>
+
+    <select [(ngModel)]="curSelect"> 
+        <option *ngFor="let cur of currency" [value]="cur">{{cur}}</option>
+    </select>
+
+    <button (click)="onSubmitCurrency()"> get currency values in compare to dollar :</button>
+    
+    <div class="currencyConvert" *ngIf= "getCurrency">
+
+        1 $ = {{ currenyCom }} {{ curSelect }}
+        </div>
+
+            
+    
+
+<br/><br/>
+<div *ngIf= "getDiamonds!=null">
+        
+    <div  class="showStatics" *ngIf="showStatics">
+
+        Avg : {{ avgDiamonds}}
+        Min : {{ minDiamonds}}
+        
+    </div>
+
+    <div  class="showStatics" *ngIf="notExistStatics">
+            
+                   not exist result for this serach
+                </div>
+
+    
+    <br/>
+    <app-diamondItem
+    *ngFor="let currentDiamond of getDiamonds"
+    [diamond]="currentDiamond"
+    
+    >
+    </app-diamondItem>
+
+</div>
+
